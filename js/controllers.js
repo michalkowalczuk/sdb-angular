@@ -44,6 +44,18 @@ sdbControllers.controller('ShopController', ['$scope',
 
 sdbControllers.controller('MessageController', ['$scope',
     function($scope) {
-        $scope.message = {};
+
+    }
+]);
+
+sdbControllers.controller('BookingController', ['$scope',
+    function($scope) {
+        $scope.test = "Booking";
+    }
+]);
+
+sdbControllers.controller('OrderController', ['$scope',
+    function($scope) {
+        $scope.test = "Order";
     }
 ]);

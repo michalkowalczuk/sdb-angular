@@ -30,6 +30,14 @@ webSdb.config(['$routeProvider',
                 templateUrl: 'parts/message.html',
                 controller: 'MessageController'
             })
+            .when('/booking', {
+                templateUrl: 'parts/booking.html',
+                controller: 'BookingController'
+            })
+            .when('/order', {
+                templateUrl: 'parts/order.html',
+                controller: 'OrderController'
+            })
             .otherwise({
                 redirectTo: '/home'
             });
