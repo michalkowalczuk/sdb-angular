@@ -1,6 +1,7 @@
 var webSdb = angular.module('webSdb',[
     'ngRoute',
-    'sdbControllers'
+    'sdbControllers',
+    'sdbDirectives'
 ]);
 
 webSdb.config(['$routeProvider',
