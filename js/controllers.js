@@ -8,7 +8,7 @@ sdbControllers.controller('HomeController', ['$scope',
 
 sdbControllers.controller('PhotosController', ['$scope',
     function($scope) {
-        $scope.test = "Photos";
+        $scope.test = "Photos?";
 
         var imageHeight = 100;
         $scope.images = [
