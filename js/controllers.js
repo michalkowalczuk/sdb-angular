@@ -6,27 +6,46 @@ sdbControllers.controller('HomeController', ['$scope',
     }
 ]);
 
-sdbControllers.controller('PhotosController', ['$scope',
-    function($scope) {
-        $scope.test = "Photos";
+sdbControllers.controller('PhotosController', ['$scope', '$http',
+    function($scope,$http) {
+        $scope.photos = [];
+        $http.get('../resources/photos.json').success(function(data){
+            $scope.photos = data;
+        });
 
-        var imageHeight = 100;
-        $scope.images = [
-            { "src": "../img/img1.jpg", height: imageHeight },
-            { "src": "../img/img2.jpg", height: imageHeight },
-            { "src": "../img/img3.jpg", height: imageHeight }
-        ];
+        $scope.showModalGallery = function(photo) {
+            $scope.selectedPhoto = photo;
+            $scope.galleryVisible = true;
+        }
+
+        $scope.hideModalGallery = function() {
+            $scope.selectedPhoto = null;
+        }
+
+        $scope.showNextImage = function(photo) {
+            var currentIndex = -1;
+            angular.forEach($scope.photos, function(value, index) {
+                if(value.src==photo) {
+                    currentIndex = index;
+                }
+            });
+            if(currentIndex!=-1 &&
+                $scope.photos.length > currentIndex+1) {
+                $scope.selectedPhoto = $scope.photos[currentIndex+1].src;
+            } else {
+                $scope.selectedPhoto = $scope.photos[0].src;
+            }
+        }
     }
 ]);
 
-sdbControllers.controller('VideosController', ['$scope', "$sce",
-    function($scope, $sce) {
+sdbControllers.controller('VideosController', ['$scope', "$sce", '$http',
+    function($scope, $sce, $http) {
         $scope.test = "Videos";
-
-        $scope.videos = [
-            { "src": $sce.trustAsResourceUrl("http://youtube.com/embed/WqmeI5fZcho") },
-            { "src": $sce.trustAsResourceUrl("http://www.youtube.com/embed/srt3OBP2kGc") }
-        ];
+        $scope.videos = [];
+        $http.get('../resources/videos.json').success(function(data){
+            $scope.videos = data;
+        });
     }
 ]);
 
@@ -48,14 +67,18 @@ sdbControllers.controller('MessageController', ['$scope',
     }
 ]);
 
-sdbControllers.controller('BookingController', ['$scope',
-    function($scope) {
+sdbControllers.controller('BookingController', ['$scope', '$http',
+    function($scope,$http) {
         $scope.test = "Booking";
+        $scope.depositPaymentMethods = [];
+        $http.get('../resources/depositPayment.json').success(function(data){
+            $scope.depositPaymentMethods = data;
+        });
     }
 ]);
 
-sdbControllers.controller('OrderController', ['$scope',
-    function($scope) {
+sdbControllers.controller('OrderController', ['$scope', '$http',
+    function($scope,$http) {
         $scope.test = "Order";
     }
 ]);
