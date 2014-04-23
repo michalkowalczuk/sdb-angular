@@ -70,10 +70,6 @@ sdbControllers.controller('MessageController', ['$scope',
 sdbControllers.controller('BookingController', ['$scope', '$http',
     function($scope,$http) {
         $scope.test = "Booking";
-        $scope.depositPaymentMethods = [];
-        $http.get('../resources/depositPayment.json').success(function(data){
-            $scope.depositPaymentMethods = data;
-        });
     }
 ]);
 

@@ -1,0 +1,30 @@
+Organiser name <input type="text" ng-model="booking.organiser_name"><br/>
+
+Organiser telephone number <input type="text" ng-model="booking.organizer_telephone"><br/>
+
+Telephone contact on the day <input type="text" ng-model="booking.telephone"><br/>
+
+Contact e-mail address <input type="text" ng-model="booking.email"><br/>
+
+Date of the event <input type="text" ng-model="booking.date"><br/>
+
+Performance times* <input type="text" ng-model="booking.times">*if times are not finalised, an estimate will do for now!<br/>
+
+Band size required <input type="text" ng-model="booking.band_size"><br/>
+
+Venue address and postcode <input type="text" ng-model="booking.address"><br/>
+
+Special requirements <input type="text" ng-model="booking.special_requirements"><br/>
+
+How did you hear about us? <input type="text" ng-model="booking.hear_about"><br/>
+
+Prefered deposit payment method*
+
+<select ng-model="booking.payment_method" ng-options="t.text for t in deposit_payment_methods"></select>
+
+*Once you have selected your preferred payment method for the deposit,
+we will send you the relevant details to make the payment.<br/>
+
+<br/>
+
+Result: {{booking}}

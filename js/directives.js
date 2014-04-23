@@ -4,7 +4,7 @@ var sdbDirectives = angular.module('sdbDirectives',[]);
 sdbDirectives.directive('orderForm',[
     function() {
         return {
-            scope: true,
+            scope: {},
             templateUrl: "../templates/orderForm.html",
             link: function(scope, element, attrs) {
                 scope.order = {};
@@ -35,4 +35,23 @@ sdbDirectives.directive('orderForm',[
             }
         };
     }
+]);
+
+sdbDirectives.directive('bookingForm', ['$http',
+   function($http) {
+       return {
+           scope: {},
+           templateUrl: "../templates/bookingForm.html",
+           link: function(scope, element, attrs) {
+               scope.booking = {};
+               scope.deposit_payment_methods = [];
+               $http.get('../resources/depositPayment.json').success(function(data) {
+                   scope.deposit_payment_methods = data;
+                   if(data.length>0) {
+                       scope.booking.payment_method = data[0];
+                   }
+               });
+           }
+       }
+   }
 ]);
