@@ -1,30 +1,69 @@
-Organiser name <input type="text" ng-model="booking.organiser_name"><br/>
+<!--
 
-Organiser telephone number <input type="text" ng-model="booking.organizer_telephone"><br/>
+- Organiser name
+- Organiser telephone number
+- Telephone contact on the day
+- Contact e-mail address
 
-Telephone contact on the day <input type="text" ng-model="booking.telephone"><br/>
+- Venue address and postcode
+- Date of the event
+- Performance times* (under: *if times are not finalised, an estimate will do for now!)
+- Band size required
+- Special requirements
 
-Contact e-mail address <input type="text" ng-model="booking.email"><br/>
+- How did you hear about us? (drop-down?)
+- Preferred deposit payment method (under: *Once you have selected your preferred payment method for the deposit,
+    we will send you the relevant details to make the payment.)
 
-Date of the event <input type="text" ng-model="booking.date"><br/>
+-->
 
-Performance times* <input type="text" ng-model="booking.times">*if times are not finalised, an estimate will do for now!<br/>
 
-Band size required <input type="text" ng-model="booking.band_size"><br/>
+<label>Organiser name <input type="text" ng-model="booking.organiserName"></label>
+<span ng-show="errors.organiserName">Please enter the name of the organiser</span><br/>
 
-Venue address and postcode <input type="text" ng-model="booking.address"><br/>
+<label>Organiser telephone number <input type="text" ng-model="booking.organiserTelephone"></label>
+<span ng-show="errors.organiserTelephone">Please enter the organiser's telephone number</span> <br/>
 
-Special requirements <input type="text" ng-model="booking.special_requirements"><br/>
+<label>Telephone contact on the day <input type="text" ng-model="booking.telephoneOnTheDay"></label>
+<span ng-show="errors.telephoneOnTheDay">Please enter the telephone contact on the day</span> <br/>
 
-How did you hear about us? <input type="text" ng-model="booking.hear_about"><br/>
+<label>Contact e-mail address <input type="text" ng-model="booking.contactEMail"></label>
+<span ng-show="errors.contactEMail">Please enter the contact e-mail address</span> <br/>
 
-Prefered deposit payment method*
+<hr/>
 
+<label>Venue address and postcode <input type="text" ng-model="booking.venueAddress"></label> <!-- that needs to change to postcode recognition -->
+<span ng-show="errors.venueAddress">Please enter the address of the venue</span> <br/>
+
+<label>Date of the event <input type="text" ng-model="booking.dateOfEvent"></label> <!-- that needs to change to select boxes/ date selector -->
+<span ng-show="errors.dateOfEvent">Please enter the date of the event</span> <br/>
+
+<label>Performance times* <input type="text" ng-model="booking.performanceTimes"></label>
+<span ng-show="errors.performanceTimes">Please enter the performance times</span>
+<span>*if times are not finalised, an estimate will do for now!</span> <br/>
+
+<label>Band size required <input type="text" ng-model="booking.bandSize"></label>
+<span ng-show="errors.bandSize">Please enter the required band size</span> <br/>
+
+<label>Special requirements <input type="text" ng-model="booking.specialRequirements"></label>
+
+<hr/>
+
+<label>How did you hear about us? <input type="text" ng-model="booking.hearAboutUs"></label> <!-- select box? -->
+<span ng-show="errors.hearAboutUs">Please let us know how did you hear about us</span> <br/>
+
+<label>Preferred deposit payment method* <input type="text" ng-model="booking.depositPayment"></label> <!-- select box? -->
+<span>*Once you have selected your preferred payment method for the deposit,
+    we will send you the relevant details to make the payment.</span> <br/>
+
+
+<button ng-click="submit();">Send</button>
+
+<!--
 <select ng-model="booking.payment_method" ng-options="t.text for t in deposit_payment_methods"></select>
-
-*Once you have selected your preferred payment method for the deposit,
-we will send you the relevant details to make the payment.<br/>
+-->
 
 <br/>
 
 Result: {{booking}}
+Errors: {{errors}}

@@ -1,7 +1,8 @@
 var webSdb = angular.module('webSdb',[
     'ngRoute',
     'sdbControllers',
-    'sdbDirectives'
+    'sdbDirectives',
+    'sdbFactories'
 ]);
 
 webSdb.config(['$routeProvider','$sceDelegateProvider',
@@ -55,7 +56,8 @@ webSdb.config(['$routeProvider','$sceDelegateProvider',
 var mobileSdb = angular.module('mobileSdb',[
     'ngRoute',
     'sdbControllers',
-    'sdbDirectives'
+    'sdbDirectives',
+    'sdbFactories'
 ]);
 
 mobileSdb.config(['$routeProvider','$sceDelegateProvider',

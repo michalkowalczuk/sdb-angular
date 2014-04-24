@@ -7,51 +7,120 @@ sdbDirectives.directive('orderForm',[
             scope: {},
             templateUrl: "../templates/orderForm.html",
             link: function(scope, element, attrs) {
-                scope.order = {};
-                scope.validation = {
-                    name: true,
-                    number: true
-                };
-
-                scope.clickMe = function() {
-                    if(validate()) {
-                        alert('ok ready');
-                    }
+                scope.submit = function() {
+                    alert("No idea...");
                 }
-
-                function validate() {
-                    scope.validation.name = scope.order.name ? true : false;
-                    scope.validation.number = scope.order.number ? true : false;
-
-                    var returnValue = true;
-                    angular.forEach(scope.validation, function(value, index) {
-                        if(!value) {
-                            returnValue = false;
-                        }
-                    });
-                    return returnValue;
-                }
-
             }
         };
     }
 ]);
 
-sdbDirectives.directive('bookingForm', ['$http',
-   function($http) {
-       return {
-           scope: {},
-           templateUrl: "../templates/bookingForm.html",
-           link: function(scope, element, attrs) {
-               scope.booking = {};
-               scope.deposit_payment_methods = [];
-               $http.get('../resources/depositPayment.json').success(function(data) {
-                   scope.deposit_payment_methods = data;
-                   if(data.length>0) {
-                       scope.booking.payment_method = data[0];
-                   }
-               });
-           }
-       }
-   }
+sdbDirectives.directive('bookingForm', [
+    function() {
+        return {
+            scope: {},
+            templateUrl: "../templates/bookingForm.html",
+            link: function(scope, element, attrs) {
+                scope.booking = {};
+                scope.errors = {};
+
+                scope.submit = function() {
+                    if(validate()) {
+                        alert("ok.. sending...");
+                    }
+                }
+
+                function validate() {
+                    scope.errors.organiserName = !scope.booking.organiserName;
+                    scope.errors.organiserTelephone = !scope.booking.organiserTelephone;
+                    scope.errors.telephoneOnTheDay = !scope.booking.telephoneOnTheDay;
+                    scope.errors.contactEMail = !scope.booking.contactEMail;
+                    scope.errors.venueAddress = !scope.booking.venueAddress;
+                    scope.errors.dateOfEvent = !scope.booking.dateOfEvent;
+                    scope.errors.performanceTimes = !scope.booking.performanceTimes;
+                    scope.errors.bandSize = !scope.booking.bandSize;
+                    scope.errors.hearAboutUs = !scope.booking.hearAboutUs;
+                    var returnValue = true;
+                    angular.forEach(scope.errors, function(value, key) {
+                        if(value==true) {
+                            returnValue = false;
+                        }
+                    });
+                    return returnValue;
+                }
+            }
+        }
+    }
+]);
+
+sdbDirectives.directive('contactUsForm', [
+    function() {
+        return {
+            scope: {},
+            templateUrl: "../templates/contactUsForm.html",
+            link: function(scope, element, attrs) {
+                scope.submit = function() {
+                    alert("ok.. sending...");
+                }
+            }
+        }
+    }
+]);
+
+sdbDirectives.directive('webHeader', [
+    function() {
+        return {
+            scope: {},
+            templateUrl: "../templates/webHeader.html"
+        }
+    }
+]);
+
+sdbDirectives.directive('photoGallery',[
+    function() {
+        return {
+            scope: {
+                photos: '='
+            },
+            templateUrl: "../templates/photoGallery.html",
+            link: function(scope, element, attrs) {
+
+                scope.showModalGallery = function(photo) {
+                    scope.selectedPhoto = photo;
+                    scope.galleryVisible = true;
+                }
+
+                scope.hideModalGallery = function() {
+                    scope.selectedPhoto = null;
+                }
+
+                scope.showNextImage = function(photo) {
+                    var currentIndex = -1;
+                    angular.forEach(scope.photos, function(value, index) {
+                        if(value.src==photo) {
+                            currentIndex = index;
+                        }
+                    });
+                    if(currentIndex!=-1 &&
+                        scope.photos.length > currentIndex+1) {
+                        scope.selectedPhoto = scope.photos[currentIndex+1].src;
+                    } else {
+                        scope.selectedPhoto = scope.photos[0].src;
+                    }
+                }
+
+            }
+        }
+    }
+]);
+
+sdbDirectives.directive('videoGallery', [
+    function() {
+        return {
+            scope: {
+                videos: '='
+            },
+            templateUrl: "../templates/videoGallery.html"
+        }
+    }
 ]);
