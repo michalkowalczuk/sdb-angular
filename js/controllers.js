@@ -1,8 +1,14 @@
 var sdbControllers = angular.module('sdbControllers',[]);
 
-sdbControllers.controller('HomeController', ['$scope',
-    function($scope) {
-
+sdbControllers.controller('HomeController', ['$scope', 'validator',
+    function($scope, validator) {
+        $scope.clickMe = function() {
+            var number = validator.newInstance()
+                .incNumber()
+                .incNumber()
+                .number;
+            alert(number);
+        }
     }
 ]);
 

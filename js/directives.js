@@ -1,6 +1,5 @@
 var sdbDirectives = angular.module('sdbDirectives',[]);
 
-
 sdbDirectives.directive('orderForm',[
     function() {
         return {
@@ -22,7 +21,6 @@ sdbDirectives.directive('bookingForm', [
             templateUrl: "../templates/bookingForm.html",
             link: function(scope, element, attrs) {
                 scope.booking = {};
-                scope.errors = {};
 
                 scope.submit = function() {
                     if(validate()) {
@@ -31,6 +29,7 @@ sdbDirectives.directive('bookingForm', [
                 }
 
                 function validate() {
+                    scope.errors = {};
                     scope.errors.organiserName = !scope.booking.organiserName;
                     scope.errors.organiserTelephone = !scope.booking.organiserTelephone;
                     scope.errors.telephoneOnTheDay = !scope.booking.telephoneOnTheDay;
@@ -59,9 +58,27 @@ sdbDirectives.directive('contactUsForm', [
             scope: {},
             templateUrl: "../templates/contactUsForm.html",
             link: function(scope, element, attrs) {
+                scope.contactUs = {};
                 scope.submit = function() {
-                    alert("ok.. sending...");
+                    if(validate()) {
+                        alert("ok.. sending...");
+                    }
                 }
+
+                function validate() {
+                    scope.errors = {}
+                    scope.errors.name = !scope.contactUs.name;
+                    scope.errors.telephoneOrEmail = !scope.contactUs.telephoneOrEmail;
+                    scope.errors.message = !scope.contactUs.message;
+                    var returnValue = true;
+                    angular.forEach(scope.errors, function(value, key) {
+                        if(value==true) {
+                            returnValue = false;
+                        }
+                    });
+                    return returnValue;
+                }
+
             }
         }
     }

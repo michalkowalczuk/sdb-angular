@@ -7,16 +7,18 @@
 -->
 
 <label>Your name <input type="text" ng-model="contactUs.name"></label>
-<span></span> <br/>
+<span ng-show="errors.name">Please enter contact name</span> <br/>
 
 <label>Your telephone number, e-mail (or anything else you prefer)
     <input type="text" ng-model="contactUs.telephoneOrEmail"></label>
-<span></span> <br/>
+<span ng-show="errors.telephoneOrEmail">Please enter contact details</span> <br/>
 
 <label>Your message <input type="text" ng-model="contactUs.message"></label>
-<span></span> <br/>
+<span ng-show="errors.message">Please enter your message</span> <br/>
 
 <button ng-click="submit();">Send</button>
 
 <br/>
+
 Result: {{contactUs}}
+Error: {{errors}}
