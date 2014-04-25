@@ -52,8 +52,8 @@ sdbDirectives.directive('bookingForm', [
     }
 ]);
 
-sdbDirectives.directive('contactUsForm', [
-    function() {
+sdbDirectives.directive('contactUsForm', ['Validator',
+    function(Validator) {
         return {
             scope: {},
             templateUrl: "../templates/contactUsForm.html",
@@ -76,7 +76,7 @@ sdbDirectives.directive('contactUsForm', [
                             returnValue = false;
                         }
                     });
-                    return returnValue;
+                    return false;
                 }
 
             }

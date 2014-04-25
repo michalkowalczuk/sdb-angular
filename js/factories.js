@@ -19,21 +19,3 @@ sdbFactories.factory('sdbResources',[
         }
     }
 ]);
-
-sdbFactories.factory('validator',[
-    function() {
-        var Validator = function() {};
-
-        Validator.prototype.number = 0;
-        Validator.prototype.incNumber = function() {
-            this.number++;
-            return this;
-        };
-
-        return {
-            newInstance: function() {
-                return new Validator();
-            }
-        }
-    }
-]);
